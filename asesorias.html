@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesorías - MIPYME Contable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4CAF50;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Empresas Section */
+        .empresas-section {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .empresas-section h2 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .empresas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .empresa-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .empresa-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .empresa-header {
+            padding: 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .empresa-1 .empresa-header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        }
+
+        .empresa-2 .empresa-header {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+        }
+
+        .empresa-3 .empresa-header {
+            background: linear-gradient(135deg, #FFD93D 0%, #FF9F1C 100%);
+        }
+
+        .empresa-4 .empresa-header {
+            background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+        }
+
+        .empresa-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empresa-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .empresa-body {
+            padding: 2rem;
+        }
+
+        .empresa-body ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .empresa-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .empresa-body li i {
+            color: #4CAF50;
+        }
+
+        .btn-asesoria {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-asesoria:hover {
+            background: #45a049;
+        }
+
+        /* Proceso Section */
+        .proceso-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .proceso-section h2 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .proceso-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .empresas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proceso-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo">MC</div>
+                <span class="logo-text">MIPYME Contable</span>
+            </a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="asesorias.html" class="active">Asesorías</a></li>
+                <li><a href="herramienta.html">Herramienta Contable</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Asesoría Contable Especializada</h1>
+        <p>Ofrecemos soluciones contables personalizadas para cada tipo de empresa. Nuestros expertos te guiarán en cada paso del proceso financiero.</p>
+    </section>
+
+    <section class="empresas-section">
+        <h2>Selecciona tu Tipo de Empresa</h2>
+        <div class="empresas-grid">
+            <div class="empresa-card empresa-1">
+                <div class="empresa-header">
+                    <i class="fas fa-store empresa-icon"></i>
+                    <h3>Comercio Minorista</h3>
+                    <p>Tiendas, comercios locales</p>
+                </div>
+                <div class="empresa-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Control de inventarios</li>
+                        <li><i class="fas fa-check"></i> Facturación electrónica</li>
+                        <li><i class="fas fa-check"></i> Impuestos locales</li>
+                        <li><i class="fas fa-check"></i> Flujo de caja</li>
+                    </ul>
+                    <a href="contacto.html" class="btn-asesoria">Solicitar Asesoría</a>
+                </div>
+            </div>
+
+            <div class="empresa-card empresa-2">
+                <div class="empresa-header">
+                    <i class="fas fa-industry empresa-icon"></i>
+                    <h3>Servicios Profesionales</h3>
+                    <p>Consultores, freelancers</p>
+                </div>
+                <div class="empresa-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Facturación de servicios</li>
+                        <li><i class="fas fa-check"></i> Retenciones en la fuente</li>
+                        <li><i class="fas fa-check"></i> Declaración de renta</li>
+                        <li><i class="fas fa-check"></i> Costos por proyectos</li>
+                    </ul>
+                    <a href="contacto.html" class="btn-asesoria">Solicitar Asesoría</a>
+                </div>
+            </div>
+
+            <div class="empresa-card empresa-3">
+                <div class="empresa-header">
+                    <i class="fas fa-utensils empresa-icon"></i>
+                    <h3>Restaurantes y Food</h3>
+                    <p>Comida, catering</p>
+                </div>
+                <div class="empresa-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Costos de alimentos</li>
+                        <li><i class="fas fa-check"></i> Control de proveedores</li>
+                        <li><i class="fas fa-check"></i> Impuestos IVA</li>
+                        <li><i class="fas fa-check"></i> Nómina de personal</li>
+                    </ul>
+                    <a href="contacto.html" class="btn-asesoria">Solicitar Asesoría</a>
+                </div>
+            </div>
+
+            <div class="empresa-card empresa-4">
+                <div class="empresa-header">
+                    <i class="fas fa-laptop-code empresa-icon"></i>
+                    <h3>Tecnología y Startups</h3>
+                    <p>Software, digital</p>
+                </div>
+                <div class="empresa-body">
+                    <ul>
+                        <li><i class="fas fa-check"></i> Contabilidad SaaS</li>
+                        <li><i class="fas fa-check"></i> Inversiones y capital</li>
+                        <li><i class="fas fa-check"></i> Propiedad intelectual</li>
+                        <li><i class="fas fa-check"></i> Impuestos digitales</li>
+                    </ul>
+                    <a href="contacto.html" class="btn-asesoria">Solicitar Asesoría</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="proceso-section">
+        <h2>Nuestro Proceso de Asesoría</h2>
+        <div class="proceso-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Diagnóstico Inicial</h3>
+                <p>Analizamos tu situación actual y identificamos oportunidades de mejora en tu gestión contable.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Plan Personalizado</h3>
+                <p>Creamos un plan de acción específico para tu tipo de empresa y necesidades.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Implementación</h3>
+                <p>Te acompañamos en la implementación de las soluciones y herramientas contables.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Seguimiento Continuo</h3>
+                <p>Realizamos seguimiento periódico para asegurar el éxito de tu gestión financiera.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>¿No encuentras tu tipo de empresa?</h2>
+        <p>Contamos con asesoría especializada para todo tipo de negocios. Contáctanos y te ayudamos a encontrar la solución perfecta para tu PYME.</p>
+        <a href="contacto.html" class="btn-cta">Contactar Ahora</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>MIPYME Contable</h3>
+            <p>Simplificando la gestión financiera para emprendedores</p>
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="asesorias.html">Asesorías</a>
+                <a href="herramienta.html">Herramienta</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 MIPYME Contable. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

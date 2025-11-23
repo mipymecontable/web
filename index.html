@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - MIPYME Contable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4CAF50;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #1e3c72;
+        }
+
+        /* Sobre Nosotros */
+        .about {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+        }
+
+        .about-image i {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Servicios */
+        .services {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #f9f9f9;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #4CAF50;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* ODS Section */
+        .ods-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        .ods-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ods-section .subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .ods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .ods-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .ods-card .ods-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .ods-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <div class="logo">MC</div>
+                <span class="logo-text">MIPYME Contable</span>
+            </a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="asesorias.html">Asesorías</a></li>
+                <li><a href="herramienta.html">Herramienta Contable</a></li>
+                <li><a href="cursos.html">Cursos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Gestión Contable Simple para PYMES</h1>
+        <p>Transforma la forma en que gestionas tus finanzas. Asesoría contable accesible, cursos interactivos y herramientas digitales diseñadas para emprendedores como tú.</p>
+        <div class="cta-buttons">
+            <a href="herramienta.html" class="btn-primary">Probar Herramienta</a>
+            <a href="asesorias.html" class="btn-secondary">Solicitar Asesoría</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>¿Quiénes Somos?</h2>
+                <p>Somos un equipo que busca transformar la forma en que las PYMES y emprendedores gestionan sus finanzas. Hoy, muchos pequeños empresarios no cuentan con asesoría contable accesible ni clara, lo que limita su crecimiento.</p>
+                <p>Nuestra solución es una plataforma digital que ofrece asesoría contable en línea, junto con cursos y simuladores interactivos que simplifican los conceptos financieros y tributarios.</p>
+                <p>Nos diferenciamos porque combinamos la experiencia profesional contable con el diseño interactivo y la gamificación, ofreciendo una experiencia amigable, accesible y segura.</p>
+            </div>
+            <div class="about-image">
+                <i class="fas fa-chart-line"></i>
+                <h3>Simplificamos la Contabilidad</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-user-tie"></i>
+                <h3>Asesoría Contable</h3>
+                <p>Asesoría personalizada en línea para cada tipo de empresa, adaptada a tus necesidades específicas.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-calculator"></i>
+                <h3>Herramienta Contable</h3>
+                <p>Software intuitivo para gestionar asientos, libros contables, estados financieros y más.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Cursos Interactivos</h3>
+                <p>Aprende contabilidad de forma práctica con simuladores y contenido gamificado.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-file-invoice"></i>
+                <h3>Reportes Financieros</h3>
+                <p>Reportes claros y fáciles de interpretar, diseñados para no contadores.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ods-section">
+        <h2>Contribución a los ODS</h2>
+        <p class="subtitle">Este proyecto impulsa los Objetivos de Desarrollo Sostenible</p>
+        <div class="ods-grid">
+            <div class="ods-card">
+                <div class="ods-number">4</div>
+                <h3>Educación de Calidad</h3>
+                <p>Educación financiera accesible</p>
+            </div>
+            <div class="ods-card">
+                <div class="ods-number">8</div>
+                <h3>Trabajo Decente</h3>
+                <p>Crecimiento económico</p>
+            </div>
+            <div class="ods-card">
+                <div class="ods-number">9</div>
+                <h3>Innovación</h3>
+                <p>Tecnología para PYMES</p>
+            </div>
+            <div class="ods-card">
+                <div class="ods-number">10</div>
+                <h3>Reducción Desigualdades</h3>
+                <p>Acceso equitativo</p>
+            </div>
+            <div class="ods-card">
+                <div class="ods-number">17</div>
+                <h3>Alianzas</h3>
+                <p>Colaboración institucional</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3>MIPYME Contable</h3>
+            <p>Simplificando la gestión financiera para emprendedores</p>
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="asesorias.html">Asesorías</a>
+                <a href="herramienta.html">Herramienta</a>
+                <a href="cursos.html">Cursos</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">&copy; 2024 MIPYME Contable. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
